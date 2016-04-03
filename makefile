@@ -1,4 +1,4 @@
-all: Sudoku.o giveQusetion.cpp solve.cpp transform.cpp
+all: Sudoku.o giveQuestion.cpp solve.cpp transform.cpp
 	g++ -o giveQuestion giveQuestion.cpp Sudoku.o
 	g++ -o solve solve.cpp Sudoku.o
 	g++ -o transform transform.cpp Sudoku.o
@@ -7,7 +7,7 @@ Sudoku.o: Sudoku.cpp Sudoku.h
 	g++ -c Sudoku.cpp -o Sudoku.o
 
 wt:
-	g++ Sudoku.cpp Sudoku.h giveQuestion.cpp transform.cpp main.cpp
+	g++ Sudoku.cpp Sudoku.h solve.cpp mains.cpp
 
 clean:
 	rm solve tramsform giveQuestion a.out *.o

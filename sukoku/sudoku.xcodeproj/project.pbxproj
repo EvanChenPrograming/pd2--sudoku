@@ -11,7 +11,8 @@
 		20119DBC1CAA63670042844B /* Sudoku.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20119DB61CAA63670042844B /* Sudoku.cpp */; };
 		20119DBD1CAA63670042844B /* solve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20119DB81CAA63670042844B /* solve.cpp */; };
 		20119DBE1CAA63670042844B /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20119DB91CAA63670042844B /* transform.cpp */; };
-		20119DC01CAA70A40042844B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20119DBF1CAA70A40042844B /* main.cpp */; };
+		20119DC01CAA70A40042844B /* mainTestAll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20119DBF1CAA70A40042844B /* mainTestAll.cpp */; };
+		20119E161CB0F5460042844B /* mains.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20119E151CB0F5460042844B /* mains.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,7 +34,8 @@
 		20119DB71CAA63670042844B /* Sudoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sudoku.h; path = ../../Sudoku.h; sourceTree = "<group>"; };
 		20119DB81CAA63670042844B /* solve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = solve.cpp; path = ../../solve.cpp; sourceTree = "<group>"; };
 		20119DB91CAA63670042844B /* transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = transform.cpp; path = ../../transform.cpp; sourceTree = "<group>"; };
-		20119DBF1CAA70A40042844B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../main.cpp; sourceTree = "<group>"; };
+		20119DBF1CAA70A40042844B /* mainTestAll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mainTestAll.cpp; path = ../../mainTestAll.cpp; sourceTree = "<group>"; };
+		20119E151CB0F5460042844B /* mains.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mains.cpp; path = ../../mains.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +68,8 @@
 		20119DAC1CAA63510042844B /* sudoku */ = {
 			isa = PBXGroup;
 			children = (
-				20119DBF1CAA70A40042844B /* main.cpp */,
+				20119DBF1CAA70A40042844B /* mainTestAll.cpp */,
+				20119E151CB0F5460042844B /* mains.cpp */,
 				20119DB41CAA63670042844B /* giveQuestion.cpp */,
 				20119DB61CAA63670042844B /* Sudoku.cpp */,
 				20119DB71CAA63670042844B /* Sudoku.h */,
@@ -133,10 +136,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20119E161CB0F5460042844B /* mains.cpp in Sources */,
 				20119DBC1CAA63670042844B /* Sudoku.cpp in Sources */,
 				20119DBE1CAA63670042844B /* transform.cpp in Sources */,
 				20119DBA1CAA63670042844B /* giveQuestion.cpp in Sources */,
-				20119DC01CAA70A40042844B /* main.cpp in Sources */,
+				20119DC01CAA70A40042844B /* mainTestAll.cpp in Sources */,
 				20119DBD1CAA63670042844B /* solve.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

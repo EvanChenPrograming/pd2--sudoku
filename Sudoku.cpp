@@ -11,13 +11,6 @@ void Sudoku::readIn(){
     }
 }
 
-void Sudoku::print(){
-    for (int i=0; i<81; i++){
-        cout<<read[i]<<" ";
-        if(i%9==8)cout<<endl;
-    }
-}
-
 
 void Sudoku::changeNum(int a,int b){
      if(a<0||a>9||b<0||b>9) return;   //validation
@@ -76,7 +69,7 @@ void Sudoku::rotate(int n){
         }
         for (int i=0; i<81; i++,l+=9) {
             if(l>80) l=--k;
-            read[i]=store[l];
+            read[l]=store[i];
         }
     }
 }
