@@ -210,36 +210,27 @@ bool Sudoku::check(){
 
 void Sudoku::guessNum(){
     int loc[81]={0},l=0;
-    //bool back=false;
-    //for(int s=1;s<10;s++){
         for(int i=0;i<81;i++){
-            if(opt[i]!=0/*||back==true*/){
+            if(opt[i]!=0){
                 loc[l]=i;
-                //cout<<l<<"&"<<loc[l]<<" &"<<read[i]<<endl;//de
                 for(int j=read[i];j<11;j++){
-                    //cout<<"in"<<j<<endl;//de
                     if(j==10){
                         read[i]=0;
                         i=loc[l-1]-1;
                         read[loc[l-1]]++;
-                       // cout<<loc[l-1]<<"  "<<read[loc[l-1]]<<"  "<<i<<endl;//de
                         l-=2;
                         if(l<-1){cout<<0<<endl;exit(0);}
-                     //   back=true;
                         break;
                     }
                     if(poss[i][j-1]!=0){
                         read[i]=j;
                         if(checkRule(read,i)==true)break;}
-                   // back=false;
                     }
                 
                 l++;
             }
         }
         
-        
-  //  }
 }
 
 bool Sudoku::checkRule(int arr[81],int i){
