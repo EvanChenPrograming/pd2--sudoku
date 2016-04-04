@@ -13,7 +13,7 @@ public:
         }
         
         for (int i=0; i<81; i++) {
-            for (int j=0; j<9; j++) {
+            for (int j=0; j<10; j++) {
                 poss[i][j]=0;
             }
         }
@@ -34,12 +34,14 @@ public:
    // int opt[81];
 private:
     bool check();
-    bool checkRule(int);
+    void checkReadin();
+    bool checkRule(int arr[81],int);
     int options(int);
     void block(int);
     void row(int);
     void col(int);
     void clean();
+    void check2ndAns();
     int setposs(int);
     void guessNum();
     int count;
@@ -47,6 +49,6 @@ private:
     int ques[81];
     
     int opt[81];
-    int poss[81][9];
+    int poss[81][10];
     
 };

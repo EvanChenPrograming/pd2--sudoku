@@ -4,6 +4,7 @@
 using namespace std;
 
 void Sudoku::solve(){
+    checkReadin();
     int k=0;
     for(int j=0;j<5;j++){
         k=count;
@@ -12,24 +13,40 @@ void Sudoku::solve(){
                 opt[i]=options(i);
             }
         }
-        clean();
+        cout<<"o"<<endl;//de
+        print();
+        /*clean();
         for (int i=0; i<81; i++) {
             if(read[i]==0)block(i);
         }
+        cout<<"b"<<endl;//de
+        print();
+        
         clean();
         for (int i=0; i<81; i++) {
             if(read[i]==0)col(i);
         }
+        cout<<"c"<<endl;//de
+        print();
+        
         clean();
         for (int i=0; i<81; i++) {
             if(read[i]==0)row(i);
-        }
+        }*/
         if(check()==true)return;
         if(k==count)break;
     }
     clean();
+    //cout<<"c"<<endl;//de
     guessNum();
+    //cout<<"b"<<endl;//de
+    check2ndAns();
     check();
+    /*print();
+    for (int i=0; i<81; i++){
+        cout<<opt[i]<<" ";
+        if(i%9==8)cout<<endl;
+    }*/
 }
 
 void Sudoku::print(){
@@ -208,42 +225,29 @@ bool Sudoku::check(){
 
 void Sudoku::guessNum(){
     int loc[81]={0},l=0;
-    bool back=false;
-    //int debug=0;
-   // for(int k=0;k<5;k++){
-    cout<<"\n";
-    for(int c=0;c<81;c++){
-        cout<<opt[c]<<" ";
-        if(c%9==8)cout<<endl;
-    }
-    cout<<endl;//de
-    print();//debug
+    //bool back=false;
     //for(int s=1;s<10;s++){
         for(int i=0;i<81;i++){
             if(opt[i]!=0/*||back==true*/){
-                //debug++;//de
                 loc[l]=i;
-                cout<<l<<"&"<<loc[l]<<" &"<<read[i]<<endl;//de
+                //cout<<l<<"&"<<loc[l]<<" &"<<read[i]<<endl;//de
                 for(int j=read[i];j<11;j++){
-                    cout<<"in"<<j<<endl;//de
+                    //cout<<"in"<<j<<endl;//de
                     if(j==10){
                         read[i]=0;
                         i=loc[l-1]-1;
                         read[loc[l-1]]++;
-                        cout<<loc[l-1]<<"  "<<read[loc[l-1]]<<"  "<<i<<endl;//de
+                       // cout<<loc[l-1]<<"  "<<read[loc[l-1]]<<"  "<<i<<endl;//de
                         l-=2;
-                        //if(debug>14){print();exit(0);}//de
-                        back=true;
+                        if(l<-1){cout<<0<<endl;exit(0);}
+                     //   back=true;
                         break;
                     }
                     if(poss[i][j-1]!=0){
                         read[i]=j;
-                        cout<<i<<"  "<<read[i]<<endl;//de
-                        if(checkRule(i)==true)break;}
-                    back=false;
-                    //if(debug==50){print();exit(0);}//de
-                    
-                }
+                        if(checkRule(read,i)==true)break;}
+                   // back=false;
+                    }
                 
                 l++;
             }
@@ -253,26 +257,76 @@ void Sudoku::guessNum(){
   //  }
 }
 
-bool Sudoku::checkRule(int i){
+bool Sudoku::checkRule(int arr[81],int i){
     int col=i%9,row=i/9,blockSt=i-col%3*1-row%3*9;
-    if(read[i]==0)return false;
+    if(arr[i]==0)return false;
     //check colum
     for (int j=col; j<81; j+=9) {
         if(i==j)continue;
-        if(read[i]==read[j])return false;
+        if(arr[i]==arr[j])return false;
     }
     //check row
     for (int j=row*9; j<row*9+9; j++) {
         if(i==j)continue;
-        if(read[i]==read[j])return false;
+        if(arr[i]==arr[j])return false;
     }
     //check block
     for (int j=blockSt; j<blockSt+20; j+=9) {
         for (int k=0; k<3; k++) {
             if(i==j+k)continue;
-            if(read[i]==read[j+k])return false;
+            if(arr[i]==arr[j+k])return false;
         }
     }
     
     return true;
+}
+
+void Sudoku::check2ndAns(){
+    int loc[81]={0},l=0,Ans2[81]={0};
+    for(int i=0;i<81;i++){
+        Ans2[i]=read[i];
+        if(opt[i]!=0)Ans2[i]=10;
+    }
+    for(int i=0;i<81;i++){
+        if(opt[i]!=0){
+            loc[l]=i;
+            for(int j=Ans2[i];j>=0;j--){
+                if(j==0){
+                    Ans2[i]=10;
+                    i=loc[l-1]-1;
+                    Ans2[loc[l-1]]--;
+                    l-=2;
+                    break;
+                }
+                if(poss[i][j-1]!=0){
+                    Ans2[i]=j;
+                    if(checkRule(Ans2,i)==true)break;}
+            }
+            
+            l++;
+        }
+    }
+    for (int i=0; i<81; i++){/////
+        if(Ans2[i]!=read[i]){
+            cout<<"2"<<endl;
+            exit(0);
+        }
+    }
+}
+
+void Sudoku::checkReadin(){
+    int j=0;
+    for(int i=0;i<81;i++){
+        if(read[i]!=0){
+            j++;
+            if(checkRule(read, i)==false){
+                cout<<0<<endl;
+                exit(0);
+            }
+        }
+    }
+    if(j<17){
+        cout<<2<<endl;
+        exit(0);
+    }
 }
