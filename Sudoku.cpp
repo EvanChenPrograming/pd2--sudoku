@@ -6,6 +6,19 @@
 #include"Sudoku.h"
 using namespace std;
 
+Sudoku::Sudoku(){
+    count=0;
+    for (int i=0; i<81; i++) {
+        opt[i]=0;
+    }
+    
+    for (int i=0; i<81; i++) {
+        for (int j=0; j<10; j++) {
+            poss[i][j]=0;
+        }
+    }
+    
+}
 
 void Sudoku::giveQuestion(){
     
@@ -50,6 +63,7 @@ void Sudoku::solve(){
         if(check()==true)return;
         if(k==count)break;
     }
+    cout<<"";
     clean();
     guessNum();
     check2ndAns();

@@ -6,18 +6,7 @@ using namespace std;
 
 class Sudoku{
 public:
-    Sudoku(){
-        count=0;
-        for (int i=0; i<81; i++) {
-            opt[i]=0;
-        }
-        
-        for (int i=0; i<81; i++) {
-            for (int j=0; j<10; j++) {
-                poss[i][j]=0;
-            }
-        }
-    }
+    Sudoku();
     void giveQuestion();
     
     void readIn();
