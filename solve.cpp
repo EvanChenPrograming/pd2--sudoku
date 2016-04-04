@@ -13,40 +13,25 @@ void Sudoku::solve(){
                 opt[i]=options(i);
             }
         }
-        cout<<"o"<<endl;//de
-        print();
-        /*clean();
+        clean();
         for (int i=0; i<81; i++) {
             if(read[i]==0)block(i);
         }
-        cout<<"b"<<endl;//de
-        print();
-        
         clean();
         for (int i=0; i<81; i++) {
             if(read[i]==0)col(i);
         }
-        cout<<"c"<<endl;//de
-        print();
-        
         clean();
         for (int i=0; i<81; i++) {
             if(read[i]==0)row(i);
-        }*/
+        }
         if(check()==true)return;
         if(k==count)break;
     }
     clean();
-    //cout<<"c"<<endl;//de
     guessNum();
-    //cout<<"b"<<endl;//de
     check2ndAns();
     check();
-    /*print();
-    for (int i=0; i<81; i++){
-        cout<<opt[i]<<" ";
-        if(i%9==8)cout<<endl;
-    }*/
 }
 
 void Sudoku::print(){
@@ -98,7 +83,7 @@ void Sudoku::block(int i){
         if(poss[i][a-1]!=0){
             for (int j=blockSt; j<blockSt+20; j+=9) {
                 for (int k=0; k<3; k++) {
-                    if(j==i)continue;
+                    if(j+k==i)continue;
                     if(read[j+k]==0&&poss[j+k][a-1]==0)continue;
                     else {jump=1;break;}
                 }
@@ -306,7 +291,7 @@ void Sudoku::check2ndAns(){
             l++;
         }
     }
-    for (int i=0; i<81; i++){/////
+    for (int i=0; i<81; i++){
         if(Ans2[i]!=read[i]){
             cout<<"2"<<endl;
             exit(0);
