@@ -54,8 +54,6 @@ int main(int argc, const char * argv[]) {
     
             case 7:
                 ss.solve();
-                cout<<endl;
-                ss.print();
                 
             default:
                 break;

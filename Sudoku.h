@@ -7,6 +7,7 @@ using namespace std;
 class Sudoku{
 public:
     Sudoku(){
+        count=0;
         for (int i=0; i<81; i++) {
             opt[i]=0;
         }
@@ -30,20 +31,22 @@ public:
     void flip(int);
     
     void transform();
-    int opt[81];//
+   // int opt[81];
 private:
     bool check();
+    bool checkRule(int);
     int options(int);
     void block(int);
     void row(int);
     void col(int);
     void clean();
     int setposs(int);
-    void guessNum(int);
+    void guessNum();
+    int count;
     int read[81];
     int ques[81];
     
-   // int opt[81];
+    int opt[81];
     int poss[81][9];
     
 };
