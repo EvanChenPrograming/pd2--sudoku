@@ -22,15 +22,15 @@ Sudoku::Sudoku(){
 
 void Sudoku::giveQuestion(){
     
-    int ques[81]={0,2,1,6,0,0,0,0,3
-        ,0,0,7,0,0,1,0,0,0
-        ,0,0,0,7,0,0,9,5,0
-        ,0,0,0,0,1,0,8,0,4
-        ,0,3,0,0,8,0,0,2,0
-        ,8,0,5,0,9,0,0,0,0
-        ,0,5,3,0,0,2,0,0,0
-        ,0,0,0,3,0,0,4,0,0
-        ,2,0,0,0,0,4,1,3,0};
+    int ques[81]={0,0,0,7,0,0,0,4,0,
+        0,0,7,4,5,0,0,0,0,
+        0,3,0,0,0,1,0,0,0,
+        0,0,0,0,0,0,0,0,8,
+        0,0,0,0,0,6,3,0,0,
+        0,0,2,0,9,0,0,7,0,
+        8,6,0,0,0,0,1,0,0,
+        0,1,0,0,0,4,8,0,0,
+        0,0,5,0,0,0,0,9,0};
     
     for (int i=0; i<81; i++){
         cout<<ques[i]<<" ";
@@ -63,7 +63,8 @@ void Sudoku::solve(){
         if(check()==true)return;
         if(k==count)break;
     }
-    cout<<"";
+    //cout<<"";
+    //print();
     clean();
     guessNum();
     check2ndAns();
@@ -246,27 +247,32 @@ bool Sudoku::check(){
 
 void Sudoku::guessNum(){
     int loc[81]={0},l=0;
-    for(int i=0;i<81;i++){
-        if(opt[i]!=0){
-            loc[l]=i;
-            for(int j=read[i];j<11;j++){
-                if(j==10){
-                    read[i]=0;
-                    i=loc[l-1]-1;
-                    read[loc[l-1]]++;
-                    l-=2;
-                    if(l<-1){cout<<0<<endl;exit(0);}
-                    break;
+   // bool back=false;
+   // for(int s=1;s<10;s++){
+        for(int i=0;i<81;i++){
+            if(opt[i]!=0/*==s||back==true*/){
+                loc[l]=i;
+              //  back=false;
+                for(int j=read[i];j<11;j++){
+                    if(j==10){
+                        read[i]=0;
+                        i=loc[l-1]-1;
+                        read[loc[l-1]]++;
+                        l-=2;
+                        if(l<-1){cout<<0<<endl;exit(0);}
+                   //     back=true;
+                        break;
+                    }
+                    if(poss[i][j-1]!=0){
+                        read[i]=j;
+                        if(checkRule(read,i)==true)break;
+                    }
                 }
-                if(poss[i][j-1]!=0){
-                    read[i]=j;
-                    if(checkRule(read,i)==true)break;}
-            }
             
-            l++;
+                l++;
+            }
         }
-    }
-    
+    //}
 }
 
 bool Sudoku::checkRule(int arr[81],int i){
@@ -295,28 +301,33 @@ bool Sudoku::checkRule(int arr[81],int i){
 
 void Sudoku::check2ndAns(){
     int loc[81]={0},l=0,Ans2[81]={0};
+    bool back=false;
     for(int i=0;i<81;i++){
         Ans2[i]=read[i];
         if(opt[i]!=0)Ans2[i]=10;
     }
-    for(int i=0;i<81;i++){
-        if(opt[i]!=0){
-            loc[l]=i;
-            for(int j=Ans2[i];j>=0;j--){
-                if(j==0){
-                    Ans2[i]=10;
-                    i=loc[l-1]-1;
-                    Ans2[loc[l-1]]--;
-                    l-=2;
-                    break;
+   // for(int s=1;s<10;s++){
+        for(int i=0;i<81;i++){
+            if(opt[i]!=0/*==s||back==true*/){
+                loc[l]=i;
+               // back=false;
+                for(int j=Ans2[i];j>=0;j--){
+                    if(j==0){
+                        Ans2[i]=10;
+                        i=loc[l-1]-1;
+                        Ans2[loc[l-1]]--;
+                        l-=2;
+                    //    back=true;
+                        break;
+                    }
+                    if(poss[i][j-1]!=0){
+                        Ans2[i]=j;
+                        if(checkRule(Ans2,i)==true)break;}
                 }
-                if(poss[i][j-1]!=0){
-                    Ans2[i]=j;
-                    if(checkRule(Ans2,i)==true)break;}
-            }
             
-            l++;
-        }
+                l++;
+            }
+        //}
     }
     for (int i=0; i<81; i++){
         if(Ans2[i]!=read[i]){
