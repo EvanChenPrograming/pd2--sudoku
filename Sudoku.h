@@ -18,9 +18,7 @@ public:
     void changeCol(int,int);
     void rotate(int);
     void flip(int);
-    
-    //void pairs(int);
-    
+
     void transform();
    // int opt[81];
 private:
